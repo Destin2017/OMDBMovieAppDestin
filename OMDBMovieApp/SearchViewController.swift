@@ -7,12 +7,105 @@
 //
 
 import UIKit
+import Alamofire
 
-class SearchViewController: UITableViewController {
+class SearchViewController: UITableViewController, UITextFieldDelegate {
+    var movieList = [MyMovieModel](){
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
+    
+    
+    @IBOutlet weak var searchTextField: UITextField!{
+        didSet {
+            searchTextField.delegate = self
+            searchTextField.text = searchText
+            
+        }
+    }
+    
+    var  searchText: String? {
+        didSet {
+            movieList.removeAll()
+            title = searchText
+            
+            getSearchedMoviesFromOMDB(searchParam: title!)
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        searchText = textField.text
+        
+        return true
+        
+    }
+    
+    func getSearchedMoviesFromOMDB(searchParam:String) {
+        Alamofire.request("http://www.omdbapi.com/?s=\(searchParam)").responseJSON { response in
+            print("original URL request: \(response.request)")  // original URL request
+            print("HTTP URL response: \(response.response)") // HTTP URL response
+            print(" server data: \(response.data)")     // server data
+            print("response serialization \(response.result)")   // result of response serialization
+            
+            if let JSON = response.result.value {
+                
+                guard let searchReslt = JSON as? NSDictionary
+                    else {
+                        return
+                }
+                
+                guard let moviesArray = searchReslt["Search"] as? NSArray
+                    else{
+                        return
+                }
+                
+                for i in 0 ..< moviesArray.count {
+                    if let movie = moviesArray[i] as? NSDictionary {
+                        //pass it to a structure and add it to my movie list
+                        self.movieList.append(MyMovieModel(movie))
+                        
+                    }
+                    
+                }
+                
+                
+                
+                print("JSON: \(JSON)")
+                
+                
+            }
+        }
+    }
+    
+    
+    struct MyMovieModel {
+        var poster = ""
+        var title = ""
+        var type = ""
+        var year = ""
+        var imdbID = ""
+        
+        init(_ objMovie: NSDictionary){
+            self.poster = (objMovie ["Poster"] as? String)!
+            self.title = (objMovie ["Title"] as? String)!
+            self.type = (objMovie ["Type"] as? String)!
+            self.year = (objMovie ["Year"] as? String)!
+            self.imdbID = (objMovie ["imdbID"] as? String)!
+            
 
+        }
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+//        searchText = "lucy"
+        
+        
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -20,33 +113,34 @@ class SearchViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return movieList.count
     }
 
-    /*
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
 
         // Configure the cell...
+        let movie = movieList[indexPath.row]
+        
+        cell.textLabel?.text = movie.title
+        cell.detailTextLabel?.text = movie.type
 
         return cell
     }
-    */
-
+    
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
