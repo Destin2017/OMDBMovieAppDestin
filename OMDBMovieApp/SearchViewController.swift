@@ -129,13 +129,19 @@ class SearchViewController: UITableViewController, UITextFieldDelegate {
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
+        let cell: MovieViewCell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MovieViewCell
 
         // Configure the cell...
         let movie = movieList[indexPath.row]
         
-        cell.textLabel?.text = movie.title
-        cell.detailTextLabel?.text = movie.type
+//        cell.textLabel?.text = movie.title
+//        cell.detailTextLabel?.text = movie.type
+        
+//        var movieCell = cell as? MovieViewCell {
+            cell.movie = movie
+//        }
+
 
         return cell
     }
@@ -178,12 +184,13 @@ class SearchViewController: UITableViewController, UITextFieldDelegate {
 
     /*
     // MARK: - Navigation
+    */
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+ 
 
 }

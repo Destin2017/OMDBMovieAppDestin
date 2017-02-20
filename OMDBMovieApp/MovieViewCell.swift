@@ -11,11 +11,37 @@ import UIKit
 class MovieViewCell: UITableViewCell {
 
     
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblYear: UILabel!
+    @IBOutlet weak var lblType: UILabel!
+    @IBOutlet weak var imgPoster: UIImageView!
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    var movie: SearchViewController.MyMovieModel? {
+        didSet {
+            updateUI()
+        }
+    }
+    
+    func updateUI() {
+        //reset any existing movie info
+        lblType?.attributedText = nil
+        lblYear?.attributedText = nil
+        lblTitle?.attributedText = nil
+        
+        //load new movie info
+        if let movie = self.movie {
+            lblTitle.text = "\(movie.title) (\(movie.imdbID))"
+            lblYear.text = movie.year
+            lblType.text = movie.type
+            
+//            let posterURL = movie.poster
+            let posterURL = NSURL(string: movie.poster)
 
-        // Configure the view for the selected state
+                if let imageData = NSData(contentsOf: posterURL as! URL) {
+                    imgPoster?.image = UIImage(data: imageData as Data)
+                }
+            
+        }
     }
 
 }
