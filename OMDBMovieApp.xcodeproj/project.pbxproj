@@ -16,6 +16,9 @@
 		73704BBB1E57529F00B177C3 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73704BBA1E57529F00B177C3 /* SearchViewController.swift */; };
 		73704BBD1E5762F000B177C3 /* MovieViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73704BBC1E5762F000B177C3 /* MovieViewCell.swift */; };
 		73704BBF1E5B491700B177C3 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73704BBE1E5B491700B177C3 /* MovieDetailsViewController.swift */; };
+		73704BE31E5C981E00B177C3 /* Film+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73704BE11E5C981E00B177C3 /* Film+CoreDataClass.swift */; };
+		73704BE41E5C981E00B177C3 /* Film+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73704BE21E5C981E00B177C3 /* Film+CoreDataProperties.swift */; };
+		73704BE61E5C9D8000B177C3 /* BookmarksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73704BE51E5C9D8000B177C3 /* BookmarksTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +34,9 @@
 		73704BBA1E57529F00B177C3 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		73704BBC1E5762F000B177C3 /* MovieViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieViewCell.swift; sourceTree = "<group>"; };
 		73704BBE1E5B491700B177C3 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
+		73704BE11E5C981E00B177C3 /* Film+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Film+CoreDataClass.swift"; sourceTree = "<group>"; };
+		73704BE21E5C981E00B177C3 /* Film+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Film+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		73704BE51E5C9D8000B177C3 /* BookmarksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarksTableViewController.swift; sourceTree = "<group>"; };
 		A2492701FB4518A67B5C6F7A /* Pods-OMDBMovieApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OMDBMovieApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-OMDBMovieApp/Pods-OMDBMovieApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,10 +81,13 @@
 		73704BA41E574F9900B177C3 /* OMDBMovieApp */ = {
 			isa = PBXGroup;
 			children = (
+				73704BE11E5C981E00B177C3 /* Film+CoreDataClass.swift */,
+				73704BE21E5C981E00B177C3 /* Film+CoreDataProperties.swift */,
 				73704BA51E574F9900B177C3 /* AppDelegate.swift */,
 				73704BBA1E57529F00B177C3 /* SearchViewController.swift */,
 				73704BBC1E5762F000B177C3 /* MovieViewCell.swift */,
 				73704BA91E574F9900B177C3 /* Main.storyboard */,
+				73704BE51E5C9D8000B177C3 /* BookmarksTableViewController.swift */,
 				73704BBE1E5B491700B177C3 /* MovieDetailsViewController.swift */,
 				73704BAF1E574F9900B177C3 /* Assets.xcassets */,
 				73704BB11E574F9900B177C3 /* LaunchScreen.storyboard */,
@@ -221,10 +230,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				73704BBF1E5B491700B177C3 /* MovieDetailsViewController.swift in Sources */,
+				73704BE61E5C9D8000B177C3 /* BookmarksTableViewController.swift in Sources */,
 				73704BBB1E57529F00B177C3 /* SearchViewController.swift in Sources */,
 				73704BBD1E5762F000B177C3 /* MovieViewCell.swift in Sources */,
 				73704BA61E574F9900B177C3 /* AppDelegate.swift in Sources */,
 				73704BAE1E574F9900B177C3 /* OMDBMovieApp.xcdatamodeld in Sources */,
+				73704BE41E5C981E00B177C3 /* Film+CoreDataProperties.swift in Sources */,
+				73704BE31E5C981E00B177C3 /* Film+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

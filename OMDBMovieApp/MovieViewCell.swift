@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class MovieViewCell: UITableViewCell {
 
@@ -16,9 +17,38 @@ class MovieViewCell: UITableViewCell {
     @IBOutlet weak var lblType: UILabel!
     @IBOutlet weak var imgPoster: UIImageView!
 
+    var film: NSManagedObject? {
+        didSet {
+            updateUI()
+        }
+    }
+    
     var movie: SearchViewController.MyMovieModel? {
         didSet {
             updateUI()
+        }
+    }
+
+    func updateUICoreData() {
+        //reset any existing movie info
+        lblType?.attributedText = nil
+        lblYear?.attributedText = nil
+        lblTitle?.attributedText = nil
+        
+        //load new movie info
+        if let film = self.film {
+            lblTitle.text = (film.value(forKey: "title") as! String?)
+            
+            lblYear.text = film.value(forKey: "year") as! String?
+            lblType.text = film.value(forKey: "type") as! String?
+            
+            //            let posterURL = movie.poster
+            let posterURL = NSURL(string: film.value(forKey: "poster") as! String)
+            
+            if let imageData = NSData(contentsOf: posterURL as! URL) {
+                imgPoster?.image = UIImage(data: imageData as Data)
+            }
+            
         }
     }
     

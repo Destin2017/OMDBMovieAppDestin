@@ -8,10 +8,56 @@
 
 import UIKit
 import Alamofire
+import CoreData
 
 class MovieDetailsViewController: UIViewController {
     
     @IBOutlet weak var imgPoster: UIImageView!
+    @IBOutlet weak var lblPlot: UILabel!
+    
+    @IBAction func bookmarkFilm(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "Confirm!!", message: "Do you want to bookmark film?", preferredStyle: .alert)
+        
+        let saveAction = UIAlertAction(title: "Save", style: .default, handler: {(action: UIAlertAction) -> Void in
+            //pick movie object and save
+            self.saveBookmarkedFilm()
+        })
+        
+        let cancelAction = UIAlertAction(title: "Calcel", style: .default, handler: {(action: UIAlertAction) -> Void in
+            //handle cancelation
+        })
+        
+        alert.addAction(saveAction)
+        alert.addAction(cancelAction)
+        
+        present(alert,animated: true,completion: nil)
+
+    }
+    
+    func saveBookmarkedFilm() {
+        //1
+        let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        //2
+        let entity = NSEntityDescription.entity(forEntityName: "Film", in: managedContext)
+        
+        //3 mapping
+        let film = Film(entity: entity!, insertInto: managedContext)
+        film.title = movie?.title
+        film.type = movie?.type
+        film.imdbID = movie?.imdbID
+        film.poster = movie?.poster
+        film.year = movie?.year
+        
+        //4 save
+        do {
+            try managedContext.save()
+        } catch let error {
+            print("Error: \(error)")
+        }
+        
+        
+    }
     
     var movie: SearchViewController.MyMovieModel? {
         
@@ -32,6 +78,8 @@ class MovieDetailsViewController: UIViewController {
             if let imageData = NSData(contentsOf: posterURL as! URL) {
                 self.imgPoster?.image = UIImage(data: imageData as Data)
             }
+            
+            self.lblPlot.text = movieInfo?.plot
         }
     }
     
@@ -48,7 +96,7 @@ class MovieDetailsViewController: UIViewController {
         var Director = ""
         var Writer = ""
         var Actors = ""
-        var Plot = ""
+        var plot = ""
         var Language = ""
         var Metascore = ""
         var imdbRating = ""
@@ -67,7 +115,7 @@ class MovieDetailsViewController: UIViewController {
             self.Writer = (objMovie ["Writer"] as? String)!
             self.Actors = (objMovie ["Actors"] as? String)!
             self.Language = (objMovie ["Language"] as? String)!
-            self.Plot = (objMovie ["Plot"] as? String)!
+            self.plot = (objMovie ["Plot"] as? String)!
             self.Metascore = (objMovie ["Metascore"] as? String)!
             self.imdbRating = (objMovie ["imdbRating"] as? String)!
             self.imdbVotes = (objMovie ["imdbVotes"] as? String)!
