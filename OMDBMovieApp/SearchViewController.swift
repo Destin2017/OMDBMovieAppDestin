@@ -135,12 +135,9 @@ class SearchViewController: UITableViewController, UITextFieldDelegate {
         // Configure the cell...
         let movie = movieList[indexPath.row]
         
-//        cell.textLabel?.text = movie.title
-//        cell.detailTextLabel?.text = movie.type
+//                    
+        cell.movie = movie
         
-//        var movieCell = cell as? MovieViewCell {
-            cell.movie = movie
-//        }
 
 
         return cell
@@ -190,6 +187,14 @@ class SearchViewController: UITableViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "showMovieDetails" {
+            if let movieDetailsView = segue.destination as? MovieDetailsViewController {
+                movieDetailsView.movie = movieList[(tableView.indexPathForSelectedRow?.row)!]
+            }
+        }
+        
+        
     }
  
 

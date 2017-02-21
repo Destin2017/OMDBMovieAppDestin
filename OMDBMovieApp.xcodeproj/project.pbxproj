@@ -15,6 +15,7 @@
 		73704BB31E574F9900B177C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73704BB11E574F9900B177C3 /* LaunchScreen.storyboard */; };
 		73704BBB1E57529F00B177C3 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73704BBA1E57529F00B177C3 /* SearchViewController.swift */; };
 		73704BBD1E5762F000B177C3 /* MovieViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73704BBC1E5762F000B177C3 /* MovieViewCell.swift */; };
+		73704BBF1E5B491700B177C3 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73704BBE1E5B491700B177C3 /* MovieDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		73704BB41E574F9900B177C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73704BBA1E57529F00B177C3 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		73704BBC1E5762F000B177C3 /* MovieViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieViewCell.swift; sourceTree = "<group>"; };
+		73704BBE1E5B491700B177C3 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 		A2492701FB4518A67B5C6F7A /* Pods-OMDBMovieApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OMDBMovieApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-OMDBMovieApp/Pods-OMDBMovieApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,6 +79,7 @@
 				73704BBA1E57529F00B177C3 /* SearchViewController.swift */,
 				73704BBC1E5762F000B177C3 /* MovieViewCell.swift */,
 				73704BA91E574F9900B177C3 /* Main.storyboard */,
+				73704BBE1E5B491700B177C3 /* MovieDetailsViewController.swift */,
 				73704BAF1E574F9900B177C3 /* Assets.xcassets */,
 				73704BB11E574F9900B177C3 /* LaunchScreen.storyboard */,
 				73704BB41E574F9900B177C3 /* Info.plist */,
@@ -217,6 +220,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73704BBF1E5B491700B177C3 /* MovieDetailsViewController.swift in Sources */,
 				73704BBB1E57529F00B177C3 /* SearchViewController.swift in Sources */,
 				73704BBD1E5762F000B177C3 /* MovieViewCell.swift in Sources */,
 				73704BA61E574F9900B177C3 /* AppDelegate.swift in Sources */,
