@@ -9,6 +9,8 @@
 import UIKit
 import Alamofire
 import CoreData
+import AVKit
+import AVFoundation
 
 class MovieDetailsViewController: UIViewController {
     
@@ -33,6 +35,25 @@ class MovieDetailsViewController: UIViewController {
         present(alert,animated: true,completion: nil)
 
     }
+    func playVideo() {
+        let url = URL(string:
+            "http://www.ebookfrenzy.com/ios_book/movie/movie.mov")
+        let player = AVPlayer(url: url!)
+        let playerController = AVPlayerViewController()
+        
+        playerController.player = player
+        self.addChildViewController(playerController)
+        self.view.addSubview(playerController.view)
+        playerController.view.frame = self.view.frame
+        
+        player.play()
+        
+    }
+    
+    @IBAction func playMovieTrailler() {
+        playVideo()
+    }
+    
     
     func saveBookmarkedFilm() {
         //1
@@ -157,6 +178,7 @@ class MovieDetailsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
