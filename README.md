@@ -1,6 +1,6 @@
 # OMDBMovieAppSwift
 
-## ASsignment Tasks
+## Assignment Tasks
 1. Complete facebook login fully with managed session within the app such that I can logout at any point within the app.
 2. Implement movie sharering on facebook timeline using FacebookSDK.
 3. Complete bookmark MVC to include custom cell and add a segue to the details page.
