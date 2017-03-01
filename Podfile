@@ -7,5 +7,8 @@ target 'OMDBMovieApp' do
 
   # Pods for OMDBMovieApp
   pod 'Alamofire', '~> 4.3'
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
+  pod 'FacebookShare'
 
 end
