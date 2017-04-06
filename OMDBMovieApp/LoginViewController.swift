@@ -11,64 +11,89 @@ import FacebookCore
 import FacebookLogin
 import FBSDKLoginKit
 
-class LoginViewController: UIViewController {
 
-    @IBOutlet weak var btnFacebookLogin: LoginButton!
+class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
+
+    @IBOutlet weak var loginButton: FBSDKLoginButton!
     @IBOutlet weak var lblProfileName: UILabel!
     @IBOutlet weak var imgUserProfilePic: UIImageView!
     
     @IBAction func loginButtonClicked(_ sender: AnyObject) {
         
+       let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
+        
+        fbLoginManager.logIn(withReadPermissions: ["public_profile", "email", "user_friends"], from: self, handler: {(result, error) -> Void in
+            if error == nil {
+                print("Logged in through facebook" )
+                self.getFBUserData()
+            }
+            else {
+                print("Facebook Login Error----\n",error)
+            }
+        }
+        )
+    }
+    
+    
+    func getFBUserData () {
+        if((FBSDKAccessToken.current()) != nil){
+            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).start(completionHandler: { (connection, result, error) -> Void in
+                if (error == nil){
+                    print(result)
+                }
+            })
+        } 
+    
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        
-//        let loginButton = LoginButton(readPermissions: [.publicProfile])
-//        loginButton.center = view.center
-//        
-//        view.addSubview(loginButton)
-    }
-    
-    func configButton() {
-        btnFacebookLogin = LoginButton(readPermissions: [.publicProfile, .email,.userFriends])
+        // Do any additional setup after loading the view, typically from a nib.
         
         
-        btnFacebookLogin.delegate = self
-    }
-    
-    // Once the button is clicked, show the login dialog
-    @objc func loginButtonClicked() {
-        let loginManager = LoginManager()
-        loginManager.logIn([ .publicProfile ], viewController: self) { loginResult in
-            switch loginResult {
-            case .failed(let error):
-                print(error)
-            case .cancelled:
-                print("User cancelled login.")
-            case .success(let grantedPermissions, let _, let accessToken):
-                print("Logged in!")
-            }
+        if (FBSDKAccessToken.current() == nil) {
+            print("Not loged in..")
+        } else {
+            print("Loged in...")
         }
+        
+        let loginButton = FBSDKLoginButton()
+        loginButton.readPermissions = ["public_profile", "email", "user_friends"]
+        loginButton.center = self.view.center
+        loginButton.delegate = self
+        
+        self.view.addSubview(loginButton)
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "movieLog.jpg")!)
+        
     }
-
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // MARK: -- Facebook Login
+    
+    
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        
+        
+        if error == nil
+        {
+            print("login completed...")
+            self.performSegue(withIdentifier: "showNew", sender: self)
+        }
+        else
+        {
+            print(error.localizedDescription)
+        }
     }
-    */
-
+    
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+        print("User Loged out...")
+    }
+    
+        
+    
 }

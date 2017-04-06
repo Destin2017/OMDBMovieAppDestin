@@ -28,6 +28,9 @@
 		73EF1F251E60A19E00E0C3A3 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73EF1F1D1E60A19E00E0C3A3 /* FBSDKCoreKit.framework */; };
 		73EF1F261E60A19E00E0C3A3 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73EF1F1E1E60A19E00E0C3A3 /* FBSDKLoginKit.framework */; };
 		73EF1F271E60A19E00E0C3A3 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73EF1F1F1E60A19E00E0C3A3 /* FBSDKShareKit.framework */; };
+		E51AE0821E95262E00624211 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51AE0811E95262E00624211 /* TableViewCell.swift */; };
+		E56B42841E95A6CE00DA0480 /* movieLog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E56B42831E95A6CE00DA0480 /* movieLog.jpg */; };
+		E5DACDBF1E954C5200798EDB /* BookmarkDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DACDBE1E954C5200798EDB /* BookmarkDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +59,9 @@
 		73EF1F1E1E60A19E00E0C3A3 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKLoginKit/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		73EF1F1F1E60A19E00E0C3A3 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKShareKit/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		A2492701FB4518A67B5C6F7A /* Pods-OMDBMovieApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OMDBMovieApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-OMDBMovieApp/Pods-OMDBMovieApp.release.xcconfig"; sourceTree = "<group>"; };
+		E51AE0811E95262E00624211 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		E56B42831E95A6CE00DA0480 /* movieLog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = movieLog.jpg; path = ../../../Downloads/movieLog.jpg; sourceTree = "<group>"; };
+		E5DACDBE1E954C5200798EDB /* BookmarkDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,12 +124,15 @@
 				73704BE11E5C981E00B177C3 /* Film+CoreDataClass.swift */,
 				73704BE21E5C981E00B177C3 /* Film+CoreDataProperties.swift */,
 				73704BA51E574F9900B177C3 /* AppDelegate.swift */,
-				73704BBA1E57529F00B177C3 /* SearchViewController.swift */,
 				73704BBC1E5762F000B177C3 /* MovieViewCell.swift */,
+				73704BBA1E57529F00B177C3 /* SearchViewController.swift */,
 				73704BA91E574F9900B177C3 /* Main.storyboard */,
+				E56B42831E95A6CE00DA0480 /* movieLog.jpg */,
+				E51AE0811E95262E00624211 /* TableViewCell.swift */,
 				73704C5E1E60973700B177C3 /* LoginViewController.swift */,
 				73704BE51E5C9D8000B177C3 /* BookmarksTableViewController.swift */,
 				73704BBE1E5B491700B177C3 /* MovieDetailsViewController.swift */,
+				E5DACDBE1E954C5200798EDB /* BookmarkDetailsViewController.swift */,
 				73704BAF1E574F9900B177C3 /* Assets.xcassets */,
 				73704BB11E574F9900B177C3 /* LaunchScreen.storyboard */,
 				73704BB41E574F9900B177C3 /* Info.plist */,
@@ -204,6 +213,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73704BB31E574F9900B177C3 /* LaunchScreen.storyboard in Resources */,
+				E56B42841E95A6CE00DA0480 /* movieLog.jpg in Resources */,
 				73704BB01E574F9900B177C3 /* Assets.xcassets in Resources */,
 				73704BAB1E574F9900B177C3 /* Main.storyboard in Resources */,
 			);
@@ -270,6 +280,8 @@
 				73704BBB1E57529F00B177C3 /* SearchViewController.swift in Sources */,
 				73704BBD1E5762F000B177C3 /* MovieViewCell.swift in Sources */,
 				73704BA61E574F9900B177C3 /* AppDelegate.swift in Sources */,
+				E51AE0821E95262E00624211 /* TableViewCell.swift in Sources */,
+				E5DACDBF1E954C5200798EDB /* BookmarkDetailsViewController.swift in Sources */,
 				73704BAE1E574F9900B177C3 /* OMDBMovieApp.xcdatamodeld in Sources */,
 				73704BE41E5C981E00B177C3 /* Film+CoreDataProperties.swift in Sources */,
 				73704BE31E5C981E00B177C3 /* Film+CoreDataClass.swift in Sources */,
@@ -403,7 +415,7 @@
 				);
 				INFOPLIST_FILE = OMDBMovieApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.ke.OMDBMovieApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vodacom.cr.OMDBMovieApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -423,7 +435,7 @@
 				);
 				INFOPLIST_FILE = OMDBMovieApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.ke.OMDBMovieApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vodacom.cr.OMDBMovieApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

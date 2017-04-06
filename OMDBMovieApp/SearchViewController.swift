@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import FBSDKLoginKit
 
 class SearchViewController: UITableViewController, UITextFieldDelegate {
     var movieList = [MyMovieModel](){
@@ -144,6 +145,11 @@ class SearchViewController: UITableViewController, UITextFieldDelegate {
     }
     
     
+    @IBAction func lougoutButton(_ sender: AnyObject) {
+        let loginManager = FBSDKLoginManager()
+        loginManager.logOut() // this is an instance function
+        performSegue(withIdentifier: "homeView", sender: nil)
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

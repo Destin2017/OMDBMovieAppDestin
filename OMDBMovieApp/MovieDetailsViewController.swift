@@ -11,11 +11,16 @@ import Alamofire
 import CoreData
 import AVKit
 import AVFoundation
-
-class MovieDetailsViewController: UIViewController {
+import FBSDKShareKit
+import FBSDKLoginKit
+class MovieDetailsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     @IBOutlet weak var imgPoster: UIImageView!
     @IBOutlet weak var lblPlot: UILabel!
+    let imagePicker = UIImagePickerController()
+   
+    
+    
     
     @IBAction func bookmarkFilm(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "Confirm!!", message: "Do you want to bookmark film?", preferredStyle: .alert)
@@ -23,9 +28,11 @@ class MovieDetailsViewController: UIViewController {
         let saveAction = UIAlertAction(title: "Save", style: .default, handler: {(action: UIAlertAction) -> Void in
             //pick movie object and save
             self.saveBookmarkedFilm()
+            
+           
         })
         
-        let cancelAction = UIAlertAction(title: "Calcel", style: .default, handler: {(action: UIAlertAction) -> Void in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {(action: UIAlertAction) -> Void in
             //handle cancelation
         })
         
@@ -76,6 +83,7 @@ class MovieDetailsViewController: UIViewController {
         } catch let error {
             print("Error: \(error)")
         }
+        
         
         
     }
@@ -174,8 +182,11 @@ class MovieDetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.imagePicker.delegate = self
+        
+        
+       // Do any additional setup after loading the view.
+        
     }
 
     
@@ -184,7 +195,47 @@ class MovieDetailsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    @IBAction func shareButtonFacebook(_ sender: AnyObject) {
+        
+        var shareArray: [AnyObject] = []
+        
+        if self.imgPoster.image != nil {
+            shareArray.append(self.imgPoster.image!)
+        }
+        if let website = NSURL(string :"http://www.ebookfrenzy.com/ios_book/movie/movie.mov") {
+            shareArray.append(website)
+        }
+        let activityVc = UIActivityViewController(activityItems: shareArray, applicationActivities: nil)
+        if let popoverController = activityVc.popoverPresentationController {
+             popoverController.sourceView = sender as? UIView
+            popoverController.sourceRect = sender.bounds
+        }
+        self.present(activityVc, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage{
+             self.imgPoster.image = pickedImage
+        }
+       self.dismiss(animated: true, completion: nil)
+        
+        let video : FBSDKShareVideo = FBSDKShareVideo ()
+        video.videoURL = (info[UIImagePickerControllerMediaURL] as! NSURL) as URL!
+        let content : FBSDKShareVideoContent = FBSDKShareVideoContent()
+        content.video = video
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
 
+    
+    
+    @IBAction func logOutPress(_ sender: AnyObject) {
+        let loginManager = FBSDKLoginManager()
+        loginManager.logOut() // this is an instance function
+        performSegue(withIdentifier: "homeView", sender: nil)
+    }
     /*
     // MARK: - Navigation
 
