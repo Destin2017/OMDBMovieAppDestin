@@ -1,11 +1,9 @@
 //
 //  AppDelegate.swift
 //  OMDBMovieApp
+//  Created by ilabafrica on 01/04/2017.
+//  Copyright © 2017 VODACOM. All rights reserved.
 //
-//  Created by Karumba Samuel on 17/02/2017.
-//  Copyright © 2017 IBM. All rights reserved.
-//
-
 import UIKit
 import CoreData
 import FBSDKCoreKit
